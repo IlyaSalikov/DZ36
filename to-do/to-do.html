@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-do list</title>
+    <script src="../jquery-3.6.0.min.js"></script>
+    <script src="to-do.js"></script>
+    <style>
+        .complete {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="page">
+        <h1 id="header">Список дел</h1>
+        <h2>В списке: <span id="counter"></span> дел</h2>
+        <ul id="ul">
+            <li id="one">Поспать</li>
+            <li id="two">Помыть кота</li>
+            <li id="three">Приготовить еду</li>
+            <li id="four">Сделать уборку</li>
+        </ul>
+        <div id="newItemButton">
+            <a href="#" id="showForm">Новый элемент</a>
+        </div>
+        <form action="" id="newItemForm">
+            <label for="itemDescription">
+                <input type="text" id="itemDescription" placeholder="Введите название дела" autocomplete="off">
+            </label>
+
+            <input type="button" id="add" value="Добавить">
+        </form>
+    </div>
+</body>
+</html>
