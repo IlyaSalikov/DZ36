@@ -12,7 +12,7 @@ $(function () {
     $li.hide().each(function (index) {
         // delay - задержка перед первоначальным появление элемента
         // fadeIn - плавно повление, посредством изменения свойства opacity
-        $(this).delay( 450 * index).fadeIn(1000);
+        $(this).delay(450 * index).fadeIn(1000);
     });
 
     // показать количество дел
@@ -31,24 +31,24 @@ $(function () {
     });
 
     function addZero(a) {
-        return (a < 10) ? `0${a}`: a;
+        return (a < 10) ? `0${a}` : a;
     }
 
     // добавление нового элемента списка
     function addItem() {
-            const text = $itemDescription.val().trim(); // берем значение атрибута value
-            // .trim() - убирает пробелы, табуляцию, переносы на новую строку в начале и в конце строки
-            if (text.length !== 0) {
-                // append добавляет в конец
-                // prepend добавляет в начало
-                $list.append(`<li>${text}</li>`);
-                $itemDescription.val('');
-                updateCounter();
-                let date = new Date();
-                let textDate = (`${addZero(date.getDate())}.${addZero(date.getMonth()+1)}.${date.getFullYear()}  ${date.getHours()}:${date.getMinutes()}`);
-                $list.append(`<span class="date">(${textDate})</span>`);
-            }
+        const text = $itemDescription.val().trim(); // берем значение атрибута value
+        // .trim() - убирает пробелы, табуляцию, переносы на новую строку в начале и в конце строки
+        if (text.length !== 0) {
+            // append добавляет в конец
+            // prepend добавляет в начало
+            $list.append(`<li>${text}</li>`);
+            $itemDescription.val('');
+            updateCounter();
+            let date = new Date();
+            let textDate = (`${addZero(date.getDate())}.${addZero(date.getMonth() + 1)}.${date.getFullYear()}  ${date.getHours()}:${date.getMinutes()}`);
+            $list.append(`<span class="date">(${textDate})</span>`);
         }
+    }
 
     //ПУНКТ 2 (ДЗ 36) - Сделать автофокус на поле ввода
     $newItemButton.on('click', function () {
@@ -61,15 +61,15 @@ $(function () {
     //ПУНКТ 4 (ДЗ 36) - Добавлять дату и время создания для каждой задачи(+строки 46,47,48)
     $newItemForm.on('submit', function (e) {
         e.preventDefault();
-        addItem ();
+        addItem();
     });
 
     // удаление элементов. при первом нажатии на элемент мы делаем его красным цветом и помещаем в конце списка. при повторном нажатии мы удаляем элемент
     $list.on('click', 'li', function () {
-        let $elem  = $(this); // кэширую элемент. т.е. сохраняю нажатый и его состояние
+        let $elem = $(this); // кэширую элемент. т.е. сохраняю нажатый и его состояние
         let $complete = $elem.hasClass('complete'); // проверяем, есть ли у элемента класс complete. возвращает true/false
-        if($complete) {
-            $elem.animate({ opacity: 0, paddingLeft: '+=180px'}, 1500, 'swing', () => {
+        if ($complete) {
+            $elem.animate({opacity: 0, paddingLeft: '+=180px'}, 1500, 'swing', () => {
                 $elem.remove();
                 updateCounter();
             });
@@ -80,4 +80,12 @@ $(function () {
             $list.append(`<li class="complete">${itemText}</li>`).hide().fadeIn(1500);
         }
     })
+
+
+    $(function () {
+        $add.on('click', function () {
+            $.cookie('to-do', $list.val(), {expires: 7});
+        })
+    });
+
 });
