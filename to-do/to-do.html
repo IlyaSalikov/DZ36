@@ -6,30 +6,53 @@
     <script src="../jquery-3.6.0.min.js"></script>
     <script src="to-do.js"></script>
     <style>
+        body {
+            background: url("happy-good-looking-man.jpg") no-repeat;
+            background-size: inherit;
+            width: 626px;
+        }
+       /*ПУНКТ 1 (ДЗ 36) - Оформить по своему усмотрению страницу и сам список*/
+        .page {
+            height: fit-content;
+            border-radius: 5%;
+            /*border: 1px solid #bab9b9;
+            box-shadow: 0 0 3px #bab9b9;
+            text-shadow: 0 0 1px #bab9b9;*/
+            padding: 30px;
+        }
+        .header {
+            margin-top: 0;
+        }
+        .ul {
+            padding: 0 0 0 20px;
+        }
+        .showForm {
+            text-decoration: none;
+            text-shadow: 0 0 15px rgb(2, 2, 236);
+        }
         .complete {
             color: red;
         }
     </style>
 </head>
 <body>
-    <div id="page">
-        <h1 id="header">Список дел</h1>
+    <div id="page" class="page">
+        <h1 id="header" class="header">Список дел</h1>
         <h2>В списке: <span id="counter"></span> дел</h2>
-        <ul id="ul">
+        <ul id="ul" class="ul">
             <li id="one">Поспать</li>
             <li id="two">Помыть кота</li>
             <li id="three">Приготовить еду</li>
             <li id="four">Сделать уборку</li>
         </ul>
         <div id="newItemButton">
-            <a href="#" id="showForm">Новый элемент</a>
+            <a href="#" id="showForm" class="showForm">Новый элемент</a>
         </div>
         <form action="" id="newItemForm">
             <label for="itemDescription">
                 <input type="text" id="itemDescription" placeholder="Введите название дела" autocomplete="off">
             </label>
-
-            <input type="button" id="add" value="Добавить">
+            <input type="button" id="addItem" value="Добавить">
         </form>
     </div>
 </body>
