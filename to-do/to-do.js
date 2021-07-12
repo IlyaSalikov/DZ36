@@ -6,7 +6,7 @@ $(function () {
     let $itemDescription = $('#itemDescription');
     let $li = $('li');
     let itemText = ''; // будет хранить текст из текстового поля
-    let $add = $('#addItem');
+    let $addItem = $('#addItem');
 
     // скрываем начальный список и затем плавно его выводом по элементно с задержкой
     $li.hide().each(function (index) {
@@ -81,11 +81,18 @@ $(function () {
         }
     })
 
+    //ДЗ 39
+    let toDo = $.cookie('to-do', $list.length, {expires: 7});
+    console.log(toDo);
 
-    $(function () {
-        $add.on('click', function () {
-            $.cookie('to-do', $list.val(), {expires: 7});
+    //ДЗ40
+    /*$(function () {
+        $($li).draggable({
+            containment: '#ul',
         })
+    });*/
+    $('#one').draggable({
+        containment: '#ul',
+        opacity: 0.4
     });
-
 });
