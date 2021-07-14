@@ -7,6 +7,8 @@ $(function () {
     let $li = $('li');
     let itemText = ''; // будет хранить текст из текстового поля
     let $addItem = $('#addItem');
+    let $bucket = $('#bucket');
+    let $removeBucket = $('#removeBucket');
 
     // скрываем начальный список и затем плавно его выводом по элементно с задержкой
     $li.hide().each(function (index) {
@@ -86,13 +88,25 @@ $(function () {
     console.log(toDo);
 
     //ДЗ40
-    /*$(function () {
-        $($li).draggable({
-            containment: '#ul',
+    $(function () {
+        $("ul").sortable();//1) Добавить возможность перетаскивать элементы списка меняя очередность.
+        $li.draggable({
+            containment: '.page',
+            snap: '.page',
+            revert: "invalid",
+            cursor: 'move',
         })
-    });*/
-    $('#one').draggable({
-        containment: '#ul',
-        opacity: 0.4
+        $bucket.droppable({//2) Добавить возможность перенести элементы в корзину.
+            drop: function (event, ui) {
+                ui.draggable.position({
+                    my: "left top", // значение элемента .drop
+                    at: "center",
+                    of: $('.bucket'),
+                });
+            }
+        });
+        $removeBucket.addEventListener('click', () => {//3) Для корзины добавить кнопку очистки всех элементов, которые в ней находятся.
+            $list.remove();
+        })
     });
 });

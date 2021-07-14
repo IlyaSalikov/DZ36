@@ -6,6 +6,7 @@
     <script src="jquery-3.6.0.min.js"></script>
     <script src="jquery_cookie.js"></script>
     <script src="to-do.js"></script>
+    <script src="jquery-ui.min.js"></script>
     <style>
         body {
             background: url("happy-good-looking-man.jpg") no-repeat;
@@ -34,6 +35,11 @@
         .complete {
             color: red;
         }
+        .bucket {
+            border: 1px solid black;
+            height: 50px;
+            width: 300px;
+        }
     </style>
 </head>
 <body>
@@ -55,6 +61,8 @@
             </label>
             <input type="button" id="addItem" value="Добавить">
         </form>
+    <div id="bucket" class="bucket"></div>
+    <input type="button" id="removeBucket" value="Очистить корзину">
     </div>
 </body>
 </html>
