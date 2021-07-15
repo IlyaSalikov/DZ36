@@ -84,12 +84,22 @@ $(function () {
     })
 
     //ДЗ 39
-    let toDo = $.cookie('to-do', $list.length, {expires: 7});
-    console.log(toDo);
+    let list = [];
+    if ($.cookie(`list`)) {
+        for (let i = 1; i <= $("#ul li").length; i++) {
+            list.push({
+                name: $(`#ul li:nth-of-type(${i}).item`).text(),
+                date: $(`#ul li:nth-of-type(${i}).date`).text()
+            });
+        }
+        $.cookie("list", JSON.stringify(list));
+    }
+    console.log(list);
 
     //ДЗ40
     $(function () {
-        $("ul").sortable();//1) Добавить возможность перетаскивать элементы списка меняя очередность.
+        //1) Добавить возможность перетаскивать элементы списка меняя очередность.
+        $("ul").sortable();//не работает, если draggable на $li
         $li.draggable({
             containment: '.page',
             snap: '.page',
@@ -105,8 +115,8 @@ $(function () {
                 });
             }
         });
-        $removeBucket.addEventListener('click', () => {//3) Для корзины добавить кнопку очистки всех элементов, которые в ней находятся.
-            $list.remove();
-        })
+        //$removeBucket.addEventListener('click', () => {//3) Для корзины добавить кнопку очистки всех элементов, которые в ней находятся.
+        //    $list.remove();
+       // })
     });
 });
